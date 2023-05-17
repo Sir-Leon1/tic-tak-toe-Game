@@ -1,5 +1,3 @@
-#!/bin/python3
-
 def constboard(board):
     print("Current status of the board:  \n\n");
 
@@ -19,10 +17,10 @@ def constboard(board):
 
 
 def user_1_turn(board):
-    pos = input("Enter X's psition from [1,2...,9]")
+    pos = input("Enter X's position from [1,2...,9]")
     pos = int(pos)
 
-    if (board[pos - 1]):
+    if (board[pos - 1]) != 0:
         print("Wrong move")
         exit(0)
 
@@ -39,17 +37,17 @@ def user_2_turn(board):
     board[pos - 1] = 1
 
 def minmax(board, player):
-    x = analyze_board(board)
+    x = analyzeboard(board)
 
     if x != 0:
-        return x*player
+        return (x*player)
     pos = -1
     value = -2
 
     for i in range(0,9):
         if board[i] == 0:
-            board[i] = 1
-            score = -(minmax(board, player *-1))
+            board[i] = player
+            score = -(minmax(board, player * (-1)))
             board[i] = 0
             if score > value:
                 value = score
@@ -76,13 +74,12 @@ def compTurn(board):
 
     board[pos] = 1
 
-def analyze_board(board):
+def analyzeboard(board):
     cb = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
 
     for i in range(0,8):
-        if (board[cb[i][0]]) != 0 and board[cb[i][0]] == board[cb[i][1]]
-         and board[cb[i][0]] == board[cb[i][2]]:
-             return booard[cb[i][0]]
+        if (board[cb[i][0]]) != 0 and board[cb[i][0]] == board[cb[i][1]] and board[cb[i][0]] == board[cb[i][2]]:
+             return board[cb[i][0]]
 
     return 0
 
@@ -103,8 +100,8 @@ def main():
             if ((i + player)% 2) == 0:
                 compTurn(board)
             else:
-                ConstBoard(board)
-                User1Turn(board)
+                constboard(board)
+                user_1_turn(board)
 
     else:
         for i in range(0,9):
@@ -112,19 +109,19 @@ def main():
             if(analyzeboard(board) != 0):
                 break
             if(i % 2 == 0):
-                constBoard(board)
-                user1Turn(board)
+                constboard(board)
+                user_1_turn(board)
             else:
-                constBoard(board)
-                user2Turn(board)
+                constboard(board)
+                user_2_turn(board)
 
     x = analyzeboard(board)
     if x == 0:
-        constBoard(board)
+        constboard(board)
         print("Draw...!!")
     if x == -1:
-        constBoard(board)
+        constboard(board)
         print("Player X wins :::: O looses!!!")
     if x == 1:
-        constBoard(board)
+        constboard(board)
         print("Player O wins:::: X looses!!!")
