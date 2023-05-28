@@ -1,3 +1,4 @@
+![](https://www.rd.com/wp-content/uploads/2019/10/tic-tac-toe-scaled.jpg?resize=1536,1056)
 # Tic-Tac-Toe Game
 
 This project is an implementation of the classic game Tic-Tac-Toe using a command-line interface. It allows two players to take turns marking X and O on a 3x3 grid. The game ends when one player successfully forms a line of three marks horizontally, vertically, or diagonally, or when all the positions on the grid are filled resulting in a draw.
